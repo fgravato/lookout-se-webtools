@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lookout Feature Flags</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1f2e;
+      color: #e2e8f0;
+      width: 280px;
+      padding: 16px;
+    }
+
+    h1 {
+      font-size: 14px;
+      color: #63b3ed;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    #status-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f1117;
+      border: 1px solid #2d3748;
+      border-radius: 7px;
+      padding: 9px 12px;
+      margin-bottom: 14px;
+      font-size: 12px;
+    }
+
+    #status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #4a5568;
+    }
+    #status-dot.active   { background: #68d391; box-shadow: 0 0 6px #68d391; }
+    #status-dot.inactive { background: #4a5568; }
+
+    #status-text { color: #a0aec0; flex: 1; line-height: 1.4; }
+
+    #btn-connect {
+      width: 100%;
+      padding: 10px;
+      background: #2b6cb0;
+      border: none;
+      border-radius: 7px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    #btn-connect:hover  { background: #3182ce; }
+    #btn-connect:active { transform: scale(0.98); }
+    #btn-connect:disabled { background: #2d3748; color: #4a5568; cursor: default; }
+
+    #btn-connect.on-page {
+      background: #276749;
+    }
+    #btn-connect.on-page:hover { background: #2f855a; }
+
+    .hint {
+      font-size: 11px;
+      color: #4a5568;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .version {
+      font-size: 10px;
+      color: #2d3748;
+      text-align: right;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Lookout Feature Flags</h1>
+
+  <div id="status-bar">
+    <div id="status-dot" class="inactive"></div>
+    <div id="status-text">Checking current tab…</div>
+  </div>
+
+  <button id="btn-connect">
+    <span id="btn-icon">→</span>
+    <span id="btn-label">Open Feature Flags</span>
+  </button>
+
+  <p class="hint">Opens the console cache API endpoint.<br>Make sure you're logged in to mtp.lookout.com first.</p>
+
+  <p class="version">v1.0.0</p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
