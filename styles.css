@@ -1,0 +1,340 @@
+/* Lookout Feature Flags Extension */
+
+#lff-root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  background: #0f1117;
+  color: #e2e8f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ──────────────────────────────── */
+#lff-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a1f2e;
+  border-bottom: 1px solid #2d3748;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+#lff-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #63b3ed;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+#lff-logo { font-size: 17px; }
+
+#lff-url {
+  font-size: 11px;
+  font-weight: 400;
+  color: #4a5568;
+  font-family: 'SF Mono', 'Fira Mono', monospace;
+}
+
+#lff-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#lff-search {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  width: 200px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+#lff-search:focus { border-color: #63b3ed; }
+#lff-search::placeholder { color: #4a5568; }
+
+.lff-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #a0aec0;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.lff-check input[type="checkbox"] {
+  accent-color: #63b3ed;
+  cursor: pointer;
+}
+
+#lff-collapse-btn,
+#lff-json-btn {
+  background: #2d3748;
+  border: 1px solid #4a5568;
+  color: #a0aec0;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+#lff-collapse-btn:hover,
+#lff-json-btn:hover {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+/* ── Body ────────────────────────────────── */
+#lff-body { padding: 16px; flex: 1; }
+
+.lff-section { margin-bottom: 32px; }
+
+.lff-section h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #90cdf4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2d3748;
+}
+
+/* ── Tenant cards ────────────────────────── */
+.lff-tenant-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lff-tenant-card {
+  background: #1a1f2e;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 170px;
+  max-width: 230px;
+}
+
+.lff-tenant-name {
+  font-weight: 600;
+  color: #90cdf4;
+  font-size: 13px;
+  margin-bottom: 5px;
+  word-break: break-word;
+}
+
+.lff-tenant-meta {
+  font-size: 11px;
+  color: #718096;
+  margin-bottom: 2px;
+}
+
+.lff-mono {
+  font-family: 'SF Mono', 'Fira Mono', monospace;
+  color: #a0aec0;
+}
+
+.lff-perm {
+  color: #fbd38d;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.lff-flags-count {
+  font-size: 12px;
+  color: #68d391;
+  font-weight: 600;
+  margin-top: 7px;
+}
+
+.lff-state { font-weight: 600; }
+.lff-state-active    { color: #68d391; }
+.lff-state-suspended { color: #fc8181; }
+
+/* ── Table ───────────────────────────────── */
+.lff-table-wrap {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #2d3748;
+}
+
+.lff-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+.lff-th-flag,
+.lff-th-tenant {
+  background: #1a1f2e;
+  color: #a0aec0;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 2px solid #2d3748;
+  border-right: 1px solid #2d3748;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.lff-th-flag {
+  left: 0;
+  z-index: 10;
+  min-width: 290px;
+}
+
+.lff-th-tenant {
+  min-width: 100px;
+  text-align: center;
+}
+
+.lff-th-name {
+  font-size: 11px;
+  color: #90cdf4;
+}
+
+/* Sticky flag name column */
+.lff-flag-name {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  color: #cbd5e0;
+  padding: 5px 12px;
+  border-right: 2px solid #2d3748;
+  font-family: 'SF Mono', 'Fira Mono', 'Consolas', monospace;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.lff-row-even               { background: #0f1117; }
+.lff-row-odd                { background: #12161e; }
+.lff-row-even .lff-flag-name { background: #0f1117; }
+.lff-row-odd  .lff-flag-name { background: #12161e; }
+
+.lff-row-even:hover,
+.lff-row-odd:hover {
+  background: #1a2233;
+}
+.lff-row-even:hover .lff-flag-name,
+.lff-row-odd:hover  .lff-flag-name {
+  background: #1a2233;
+}
+
+.lff-flag-value {
+  text-align: center;
+  padding: 4px 8px;
+  border-right: 1px solid #1a2233;
+}
+
+.lff-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.lff-on {
+  background: #1c4532;
+  color: #68d391;
+  border: 1px solid #276749;
+}
+
+.lff-off {
+  background: transparent;
+  color: #4a5568;
+  border: 1px solid #2d3748;
+}
+
+.lff-na {
+  background: transparent;
+  color: #2d3748;
+  border: 1px solid transparent;
+}
+
+.lff-cell-on { background: rgba(104, 211, 145, 0.05); }
+
+/* ── Raw JSON modal ──────────────────────── */
+#lff-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+#lff-modal[hidden] { display: none; }
+
+#lff-modal-inner {
+  background: #1a1f2e;
+  border: 1px solid #2d3748;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+#lff-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid #2d3748;
+  font-weight: 600;
+  color: #90cdf4;
+  font-size: 13px;
+}
+
+#lff-modal-close {
+  background: #2d3748;
+  border: none;
+  color: #a0aec0;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.15s;
+}
+
+#lff-modal-close:hover { background: #fc8181; color: #fff; }
+
+#lff-modal-pre {
+  overflow: auto;
+  padding: 16px;
+  font-family: 'SF Mono', 'Fira Mono', 'Consolas', monospace;
+  font-size: 11px;
+  color: #e2e8f0;
+  white-space: pre;
+  margin: 0;
+  flex: 1;
+  line-height: 1.5;
+}
